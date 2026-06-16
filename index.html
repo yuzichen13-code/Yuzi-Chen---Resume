@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陈羽姿 Yuzi Chen · 简历 + 项目集</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{
+    --bg:#ECEAE6; --sheet:#FCFBF9; --side:#F4F2EE;
+    --ink:#23211E; --ink-2:#56524B; --ink-3:#8C877D;
+    --hair:#E2DED6; --hair-2:#D4CFC5;
+    --purple:#4B2E6F; --purple-soft:#6B4A92; --purple-tint:#F0EBF5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;line-height:1.6;padding:36px 20px}
+  body.locked{overflow:hidden}
+  .serif{font-family:'Noto Serif SC',serif}
+
+  .sheet{max-width:1040px;margin:0 auto;background:var(--sheet);box-shadow:0 18px 60px rgba(40,35,28,.12);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:300px 1fr}
+
+  /* LEFT */
+  .side{background:var(--side);border-right:1px solid var(--hair);padding:40px 30px}
+  .avatar{width:150px;height:150px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 24px;border:3px solid #fff;box-shadow:0 6px 20px rgba(75,46,111,.18)}
+  .name{text-align:center}
+  .name h1{font-family:'Noto Serif SC';font-weight:700;font-size:32px;letter-spacing:.04em}
+  .name .en{font-size:15px;color:var(--ink-3);letter-spacing:.22em;margin-top:4px;font-weight:400}
+  .name .title{display:inline-block;margin-top:14px;font-size:11.5px;color:var(--purple);background:var(--purple-tint);border-radius:20px;padding:5px 14px;letter-spacing:.06em;font-weight:500}
+  .contact{margin-top:28px;display:flex;flex-direction:column;gap:9px}
+  .contact a,.contact span{font-size:12.5px;color:var(--ink-2);display:flex;align-items:center;gap:10px;text-decoration:none}
+  .contact .ic{width:14px;text-align:center;color:var(--purple-soft)}
+  .side h3{font-family:'Noto Serif SC';font-weight:600;font-size:15px;margin:30px 0 12px;padding-bottom:8px;border-bottom:1.5px solid var(--ink);letter-spacing:.04em}
+  .intro{font-size:12.5px;color:var(--ink-2);line-height:1.75;text-align:justify}
+  .edu .item{padding:13px 0;border-bottom:1px solid var(--hair)}
+  .edu .item:last-child{border-bottom:none}
+  .edu .sch{font-size:13px;font-weight:500;color:var(--ink)}
+  .edu .deg{font-size:12px;color:var(--ink-2);margin:3px 0}
+  .edu .meta{font-size:10.5px;color:var(--ink-3);letter-spacing:.04em;display:flex;justify-content:space-between;margin-top:4px}
+  .edu .gpa{color:var(--purple-soft);font-weight:500}
+  .skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .skills .s{font-size:11px;color:var(--ink-2);background:#fff;border:1px solid var(--hair-2);border-radius:5px;padding:4px 9px}
+
+  /* RIGHT */
+  .tabs{display:flex;border-bottom:1px solid var(--hair);position:sticky;top:0;background:var(--sheet);z-index:5}
+  .tab{flex:1;padding:20px 16px;background:none;border:none;cursor:pointer;font-family:'Noto Sans SC';font-size:14px;font-weight:500;color:var(--ink-3);position:relative;transition:color .2s;letter-spacing:.02em}
+  .tab .sub{display:block;font-size:10px;color:var(--ink-3);font-weight:400;margin-top:3px;letter-spacing:.1em;text-transform:uppercase;font-family:'Spline Sans Mono'}
+  .tab:hover{color:var(--ink-2)}
+  .tab.active{color:var(--purple)}
+  .tab.active .sub{color:var(--purple-soft)}
+  .tab.active::after{content:'';position:absolute;left:0;bottom:-1px;width:100%;height:2.5px;background:var(--purple)}
+  .panel{display:none;padding:38px 42px 48px;animation:fade .4s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .exp{position:relative;padding-left:24px}
+  .exp::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1.5px;background:var(--hair-2)}
+  .job{position:relative;padding:0 0 30px}
+  .job:last-child{padding-bottom:4px}
+  .job::before{content:'';position:absolute;left:-22.5px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--purple);box-shadow:0 0 0 3px var(--purple-tint)}
+  .job .jh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+  .job .role{font-size:16px;font-weight:700;color:var(--ink)}
+  .job .date{font-family:'Spline Sans Mono';font-size:11.5px;color:var(--ink-3)}
+  .job .org{font-size:13px;color:var(--purple-soft);font-weight:500;margin:3px 0 11px}
+  .job .org .note{font-size:11px;color:var(--ink-3);font-weight:300}
+  .job ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .job li{font-size:12.5px;color:var(--ink-2);line-height:1.65;padding-left:15px;position:relative}
+  .job li::before{content:'';position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--hair-2)}
+  .job li b{color:var(--ink);font-weight:500}
+
+  .pf-note{background:var(--purple-tint);border-radius:8px;padding:14px 18px;font-size:12.5px;color:var(--purple);line-height:1.6;margin-bottom:26px;display:flex;gap:11px}
+  .pf-note .ic{flex-shrink:0}
+  .pf-note b{font-weight:700}
+  .work{border:1px solid var(--hair);border-radius:10px;margin-bottom:12px;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+  .work:hover{border-color:var(--hair-2);box-shadow:0 4px 16px rgba(40,35,28,.05)}
+  .work.open{border-color:var(--purple-soft)}
+  .wh{display:grid;grid-template-columns:1fr auto 22px;gap:18px;align-items:center;padding:18px 22px;cursor:pointer}
+  .wh .wt{font-size:15px;font-weight:500;color:var(--ink)}
+  .wh .wt .ph{display:inline-block;font-family:'Spline Sans Mono';font-size:9.5px;color:var(--purple-soft);background:var(--purple-tint);border-radius:4px;padding:2px 7px;margin-right:10px;letter-spacing:.08em;vertical-align:middle}
+  .wh .wt .myrole{display:block;font-size:11.5px;color:var(--ink-3);font-weight:400;margin-top:5px}
+  .wh .wtag{font-family:'Spline Sans Mono';font-size:11px;color:var(--ink-3);white-space:nowrap}
+  .wh .wx{font-family:'Noto Serif SC';font-size:20px;color:var(--purple-soft);text-align:center;transition:transform .3s}
+  .work.open .wx{transform:rotate(45deg)}
+  .wb{max-height:0;overflow:hidden;transition:max-height .45s ease}
+  .work.open .wb{max-height:600px}
+  .wb-in{padding:0 22px 24px;border-top:1px solid var(--hair);margin-top:2px;padding-top:18px;display:grid;grid-template-columns:1fr 280px;gap:32px}
+  .wb-in .mypart{font-size:12.5px;color:var(--ink-2);line-height:1.75}
+  .wb-in .mypart .lbl{font-family:'Spline Sans Mono';font-size:10px;letter-spacing:.12em;color:var(--purple-soft);text-transform:uppercase;display:block;margin-bottom:8px}
+  .wb-in .mypart p{margin-bottom:14px}
+  .wb-in .read{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--purple);border:1px solid var(--purple-soft);border-radius:7px;padding:9px 16px;cursor:pointer;transition:background .2s,color .2s;background:none;font-family:inherit}
+  .wb-in .read:hover{background:var(--purple);color:#fff}
+  .findings{background:var(--side);border-radius:9px;padding:16px 18px;align-self:start}
+  .findings .fh{font-family:'Spline Sans Mono';font-size:10px;letter-spacing:.12em;color:var(--ink-3);text-transform:uppercase;margin-bottom:13px}
+  .findings .fr{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px dotted var(--hair-2);font-size:12.5px;color:var(--ink-2)}
+  .findings .fr:last-child{border-bottom:none}
+  .findings .fr b{font-family:'Spline Sans Mono';color:var(--purple);font-weight:500;font-size:13px}
+
+  .hl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:26px}
+  .hl{background:var(--side);border:1px solid var(--hair);border-radius:10px;padding:22px 24px}
+  .hl .v{font-family:'Noto Serif SC';font-size:40px;font-weight:700;color:var(--purple);line-height:1}
+  .hl .v small{font-size:20px;color:var(--purple-soft)}
+  .hl .l{font-size:12.5px;color:var(--ink-2);margin-top:10px;font-weight:400}
+  .hl .src{font-size:10.5px;color:var(--ink-3);margin-top:4px}
+  .hl-cap{font-size:11.5px;color:var(--ink-3);line-height:1.6;font-style:italic}
+  /* career metrics wall */
+  .hl-group{margin-bottom:30px}
+  .hl-group:last-child{margin-bottom:0}
+  .hl-gh{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;padding-bottom:9px;border-bottom:1.5px solid var(--ink)}
+  .hl-gh .co{font-family:'Noto Serif SC';font-weight:600;font-size:16px;color:var(--ink)}
+  .hl-gh .ro{font-size:11.5px;color:var(--purple-soft);font-weight:500}
+  .hl-gh .yr{font-family:'Spline Sans Mono';font-size:11px;color:var(--ink-3);margin-left:auto}
+  .hl-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .hl-row.two{grid-template-columns:repeat(2,1fr)}
+  .hl2{background:var(--side);border:1px solid var(--hair);border-radius:10px;padding:18px 18px 16px;transition:border-color .2s,transform .2s}
+  .hl2:hover{border-color:var(--purple-soft);transform:translateY(-2px)}
+  .hl2 .v{font-family:'Noto Serif SC';font-size:33px;font-weight:700;color:var(--purple);line-height:1;letter-spacing:-.01em}
+  .hl2 .v small{font-size:17px;color:var(--purple-soft)}
+  .hl2 .l{font-size:12px;color:var(--ink-2);margin-top:9px;line-height:1.5;font-weight:400}
+  .hl2 .pj{font-family:'Spline Sans Mono';font-size:9.5px;color:var(--ink-3);margin-top:8px;letter-spacing:.02em;text-transform:none}
+
+  /* ===== MODAL (报告弹层) ===== */
+  .overlay{position:fixed;inset:0;background:rgba(35,30,25,.5);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .35s;z-index:50}
+  .overlay.show{opacity:1;pointer-events:auto}
+  .modal{position:fixed;top:0;right:0;height:100%;width:min(760px,92vw);background:var(--sheet);box-shadow:-12px 0 50px rgba(40,35,28,.25);transform:translateX(100%);transition:transform .42s cubic-bezier(.4,0,.2,1);z-index:51;display:flex;flex-direction:column}
+  .modal.show{transform:translateX(0)}
+  .modal-bar{display:flex;align-items:center;justify-content:space-between;padding:18px 30px;border-bottom:1px solid var(--hair);background:var(--sheet)}
+  .modal-bar .mtag{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:.14em;color:var(--purple-soft);text-transform:uppercase}
+  .modal-close{background:none;border:1px solid var(--hair-2);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:18px;color:var(--ink-2);display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+  .modal-close:hover{background:var(--purple-tint);border-color:var(--purple-soft);color:var(--purple)}
+  .modal-scroll{overflow-y:auto;padding:36px 44px 70px}
+  .doc-disclaimer{font-size:11.5px;color:var(--ink-3);background:var(--side);border-left:3px solid var(--purple-soft);padding:11px 16px;border-radius:0 6px 6px 0;margin-bottom:30px;line-height:1.65}
+
+  /* report typography inside modal */
+  .report h2{font-family:'Noto Serif SC';font-weight:700;font-size:26px;color:var(--ink);line-height:1.35;margin-bottom:6px;letter-spacing:.01em}
+  .report section{margin-top:30px}
+  .report h3{font-family:'Noto Serif SC';font-weight:600;font-size:17px;color:var(--purple);margin-bottom:11px;padding-left:13px;border-left:3px solid var(--purple-soft);line-height:1.4}
+  .report p{font-size:13.5px;color:var(--ink-2);line-height:1.85;margin-bottom:12px}
+  .report ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin:6px 0 14px}
+  .report li{font-size:13.5px;color:var(--ink-2);line-height:1.7;padding-left:18px;position:relative}
+  .report li::before{content:'';position:absolute;left:2px;top:10px;width:5px;height:5px;border-radius:50%;background:var(--purple-soft)}
+  .report strong{color:var(--purple);font-weight:600}
+  .report blockquote{background:var(--purple-tint);border-radius:8px;padding:14px 18px;font-size:13px;color:var(--purple);line-height:1.7;margin:14px 0;font-style:normal}
+  .report table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12.5px}
+  .report th{background:var(--side);color:var(--ink);font-weight:600;text-align:left;padding:10px 12px;border-bottom:2px solid var(--hair-2);font-size:12px}
+  .report td{padding:9px 12px;border-bottom:1px solid var(--hair);color:var(--ink-2)}
+  .report tr:hover td{background:var(--side)}
+  .report code{font-family:'Spline Sans Mono';font-size:12px;background:var(--side);padding:1px 6px;border-radius:4px;color:var(--purple-soft)}
+  .modal-scroll::-webkit-scrollbar{width:10px}
+  .modal-scroll::-webkit-scrollbar-thumb{background:var(--hair-2);border-radius:5px;border:3px solid var(--sheet)}
+
+  @media(max-width:860px){
+    .sheet{grid-template-columns:1fr}
+    .side{border-right:none;border-bottom:1px solid var(--hair)}
+    .wb-in,.hl-grid{grid-template-columns:1fr}
+    .hl-row,.hl-row.two{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- LEFT -->
+  <aside class="side">
+    <img class="avatar" src="assets/avatar-round.png" alt="陈羽姿">
+    <div class="name">
+      <h1>陈羽姿</h1>
+      <div class="en">YUZI CHEN</div>
+      <div class="title">海外 KOL 营销经理 · Creator 运营</div>
+    </div>
+    <div class="contact">
+      <a href="mailto:yuzichen13@gmail.com"><span class="ic">✉</span>yuzichen13@gmail.com</a>
+      <span><span class="ic">☏</span>156-1230-1133</span>
+    </div>
+    <h3>个人简介</h3>
+    <p class="intro">就读于美国西北大学传媒系硕士，加州大学欧文分校媒体艺术管理学士，并在伦敦艺术大学修读市场与媒体管理。工作经历以传媒方向为主，擅长内容策划、沟通协调、品牌核心调研，具备多任务处理能力。</p>
+    <h3>教育背景</h3>
+    <div class="edu">
+      <div class="item">
+        <div class="sch">美国西北大学 · 硕士</div>
+        <div class="deg">传媒学 · M.S. in Communication</div>
+        <div class="meta"><span>2022.09 – 2023.08</span><span class="gpa">GPA 3.9 · Top 10</span></div>
+      </div>
+      <div class="item">
+        <div class="sch">加州大学欧文分校 · 本科</div>
+        <div class="deg">媒体艺术 · B.A. Media Arts</div>
+        <div class="meta"><span>2018.09 – 2021.12</span><span class="gpa">GPA 3.903 · Top 10</span></div>
+      </div>
+      <div class="item">
+        <div class="sch">伦敦艺术大学 · 证书</div>
+        <div class="deg">应用市场营销与媒体管理</div>
+        <div class="meta"><span>2021.07 – 2021.09</span><span></span></div>
+      </div>
+    </div>
+    <h3>核心能力</h3>
+    <div class="skills">
+      <span class="s">海外 KOL 营销</span><span class="s">Creator 招募运营</span>
+      <span class="s">内容策略复盘</span><span class="s">数据分析洞察</span>
+      <span class="s">AI 自动化工作流</span><span class="s">竞品对标研究</span>
+      <span class="s">跨平台 Campaign</span><span class="s">社群培训管理</span>
+    </div>
+  </aside>
+
+  <!-- RIGHT -->
+  <main class="main">
+    <div class="tabs">
+      <button class="tab active" data-p="exp">工作经历<span class="sub">Experience</span></button>
+      <button class="tab" data-p="work">项目实践<span class="sub">Projects</span></button>
+      <button class="tab" data-p="hl">成果亮点<span class="sub">Highlights</span></button>
+    </div>
+
+    <!-- TAB 1 -->
+    <section class="panel active" id="exp">
+      <div class="exp">
+        <div class="job">
+          <div class="jh"><span class="role">海外 KOL 营销经理</span><span class="date">2025.07 – 至今</span></div>
+          <div class="org">Solvely.ai　<span class="note">· 一款面向北美学生的 AI 学习工具</span></div>
+          <ul>
+            <li>北美 KOL 合作营销：负责头部至中腰部 KOL 的拓展、合作洽谈与内容共创，参与内容方向、脚本指导、报价沟通与投放排期，为品牌在 TikTok / Instagram / YouTube 等平台获得高质量曝光</li>
+            <li>学生 Creator 招募与社群运营：参与学生 Creator 的招募、筛选、培训与日常内容管理，累计签约 <b>300+</b> 学生 Creator；团队每周稳定产出 <b>2,500+</b> 条 UGC 内容，日均触达 <b>1,500+</b> Creator</li>
+            <li>AI 自动化与流程优化：熟练运用 Cursor / Codex / Claude 等 AI 工具，搭建达人评分系统，自动化邮件触达、达人信息抓取与 Onboarding 流程，减少重复性筛选、跟进与状态维护工作，提升运营人效</li>
+            <li>数据分析与策略复盘：基于内容表现、CPM、自然曝光、转化信号与招募数据，完成 Campaign 复盘、渠道分析与竞品对标，为 Creator 招募、内容方向和投流 / 自然流策略迭代提供依据</li>
+            <li>跨平台活动（开学季整合营销）：参与策划并落地「开学季」整合营销，KOL 与学生 Creator 双线联动实现 <b>40M+</b> 曝光，达成 <b>178%</b> 目标；活动团队复盘口径中，总曝光达 <b>68M</b>，目标完成度 <b>164%</b></li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="jh"><span class="role">社交媒体创作者</span><span class="date">2022 – 至今</span></div>
+          <div class="org">小红书 / 抖音 / TikTok / Instagram</div>
+          <ul>
+            <li>打造个人风格与生活方式内容账号，主流社媒累计粉丝 <b>10 万+</b>；小红书单帖最高 5M+、抖音单视频最高 4M+ 浏览</li>
+            <li>基于数据分析与用户洞察优化内容策略，90 天账号增长率 <b>476%</b>，月均 800K+ 互动、10K+ 新增粉丝</li>
+            <li>与 50+ 行业品牌合作，结合品牌价值与个人风格创作「双赢」内容</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="jh"><span class="role">品牌客户经理</span><span class="date">2023.10 – 2025.04</span></div>
+          <div class="org">Wahool　<span class="note">· 跨境直播电商服务商</span></div>
+          <ul>
+            <li>TikTok 直播出海全流程运营，为 <b>15+</b> 跨境品牌提供本地化直播解决方案，助力品牌进入北美市场</li>
+            <li>「品牌 × 达人」联营模式：负责红人 / 主播甄选、招募与培训，定制化设计培训课程</li>
+            <li>数据驱动运营：监测 ROI、GMV、停留时长等 12 项核心指标，通过 AB 测试优化流量分配，客户续约率超 <b>85%</b></li>
+            <li>搭建千人跨境主播资源库，采用分级评估体系对接培训与指导</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="jh"><span class="role">企业传播 & 金融业公关实习生</span><span class="date">2022.11 – 2023.05</span></div>
+          <div class="org">爱德曼国际公关（中国）有限公司</div>
+          <ul>
+            <li>结合行业动态系统规划各类稿件与研究文章，撰写企业 / 金融方社交媒体策略及内容</li>
+            <li>润色校对企业核心品牌信息屋、CVP；中英文研究日常金融新闻与电商市场亮点</li>
+            <li>分析关键指标数据，衡量并优化营销效果，生成客户报告</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2 -->
+    <section class="panel" id="work">
+      <div class="pf-note">
+        <span class="ic">✦</span>
+        <span>下列为我在 <b>Solvely.ai</b>（一款面向北美学生的 AI 学习工具）担任海外 KOL 营销经理期间参与或负责的代表项目。部分成果由团队与活动协作完成，这里如实标注<b>我承担的部分</b>，点击卡片展开、再点「查看完整报告」即可阅读脱敏后的完整内容。</span>
+      </div>
+
+      <div class="work">
+        <div class="wh" onclick="toggleWork(this)">
+          <span class="wt"><span class="ph">运营复盘</span>开学季 Creator 营销复盘报告
+            <span class="myrole">我的角色：负责学生 Creator 线的招募、引导与内容管理，并执笔本复盘文档</span>
+          </span>
+          <span class="wtag">2025.11.05–12.15</span>
+          <span class="wx">+</span>
+        </div>
+        <div class="wb"><div class="wb-in">
+          <div class="mypart">
+            <span class="lbl">我具体做了什么</span>
+            <p>在这场团队整合营销中，我负责学生 Creator 一条线：招募、新人引导跟进、日常内容指导与素材管理，并在结束后整理复盘文档，归纳投流与自然曝光协同下的内容表现、人员管理与后续优化方向。</p>
+            <button class="read" onclick="openReport('r1')">查看完整报告 →</button>
+          </div>
+          <div class="findings">
+            <div class="fh">活动团队成果</div>
+            <div class="fr"><span>总曝光</span><b>68M</b></div>
+            <div class="fr"><span>目标完成度</span><b>164%</b></div>
+            <div class="fr"><span>CPM 环比</span><b>↓21.1%</b></div>
+            <div class="fr"><span>爆款率</span><b>1.88%</b></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="work">
+        <div class="wh" onclick="toggleWork(this)">
+          <span class="wt"><span class="ph">AI 工作流</span>Creator 运营中的 AI 与自动化实践
+            <span class="myrole">我的角色：梳理运营痛点，协同技术团队把 AI 评分、邮件自动化与信息抓取纳入日常流程</span>
+          </span>
+          <span class="wtag">AI · Automation</span>
+          <span class="wx">+</span>
+        </div>
+        <div class="wb"><div class="wb-in">
+          <div class="mypart">
+            <span class="lbl">我具体做了什么</span>
+            <p>围绕 Creator 招募和审核的重复性工作，我参与梳理流程、定义可被 AI 辅助判断的节点，并将评分辅助、邮件触达、联系人抓取等动作沉淀成可复用的自动化工作流，帮助团队减少人工筛选与追踪成本。</p>
+            <button class="read" onclick="openReport('r4')">查看完整文档 →</button>
+          </div>
+          <div class="findings">
+            <div class="fh">工作流覆盖</div>
+            <div class="fr"><span>AI 视频初筛</span><b>多模态</b></div>
+            <div class="fr"><span>邮件触达</span><b>自动化</b></div>
+            <div class="fr"><span>达人信息抓取</span><b>Skill</b></div>
+            <div class="fr"><span>人机校准样本</span><b>720 条</b></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="work">
+        <div class="wh" onclick="toggleWork(this)">
+          <span class="wt"><span class="ph">数据分析</span>Creator 招募渠道分析报告
+            <span class="myrole">我的角色：负责整理招募数据，完成渠道质量、地区结构与转化趋势分析</span>
+          </span>
+          <span class="wtag">1,106 份样本</span>
+          <span class="wx">+</span>
+        </div>
+        <div class="wb"><div class="wb-in">
+          <div class="mypart">
+            <span class="lbl">我具体做了什么</span>
+            <p>对全周期招募申请做多维复盘：把渠道来源、候选人质量、地区匹配度和时间趋势放到同一张分析框架里，帮助团队判断哪些渠道值得继续投入、哪些需要调整筛选口径。</p>
+            <button class="read" onclick="openReport('r2')">查看完整报告 →</button>
+          </div>
+          <div class="findings">
+            <div class="fh">分析维度</div>
+            <div class="fr"><span>申请样本</span><b>1,106 份</b></div>
+            <div class="fr"><span>渠道质量</span><b>分层对比</b></div>
+            <div class="fr"><span>地区结构</span><b>匹配分析</b></div>
+            <div class="fr"><span>趋势变化</span><b>月度复盘</b></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="work">
+        <div class="wh" onclick="toggleWork(this)">
+          <span class="wt"><span class="ph">竞品研究</span>竞品对标与招募策略分析
+            <span class="myrole">我的角色：负责样本梳理、指标拆解与策略复盘，输出招募与内容侧的分析判断</span>
+          </span>
+          <span class="wtag">697 账号 · 14,914 视频</span>
+          <span class="wx">+</span>
+        </div>
+        <div class="wb"><div class="wb-in">
+          <div class="mypart">
+            <span class="lbl">我具体做了什么</span>
+            <p>梳理三家竞品的 TikTok 账号与视频样本，建立“账号结构、内容表现、活跃状态、爆款特征”的对标框架，用数据支持团队判断市场格局、招募方向与内容优化机会。</p>
+            <button class="read" onclick="openReport('r3')">查看完整报告 →</button>
+          </div>
+          <div class="findings">
+            <div class="fh">研究覆盖范围</div>
+            <div class="fr"><span>分析账号</span><b>697 个</b></div>
+            <div class="fr"><span>视频样本</span><b>14,914 条</b></div>
+            <div class="fr"><span>账号结构</span><b>分层诊断</b></div>
+            <div class="fr"><span>内容规律</span><b>模式归纳</b></div>
+          </div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- TAB 3 -->
+    <section class="panel" id="hl">
+      <div class="hl-group">
+        <div class="hl-gh"><span class="co">Solvely.ai</span><span class="ro">海外 KOL 营销经理</span><span class="yr">2025.07 – 至今</span></div>
+        <div class="hl-row">
+          <div class="hl2"><div class="v">40<small>M+</small></div><div class="l">双线联动曝光，达成 178% 目标</div><div class="pj">2025 开学季整合营销</div></div>
+          <div class="hl2"><div class="v">300<small>+</small></div><div class="l">累计签约学生 Creator</div><div class="pj">Creator 招募与社群运营</div></div>
+          <div class="hl2"><div class="v">2,500<small>+</small></div><div class="l">团队每周稳定产出 UGC 内容</div><div class="pj">Creator 内容流水线</div></div>
+          <div class="hl2"><div class="v">AI<small>自动化</small></div><div class="l">熟练运用 Cursor / Codex / Claude 等 AI 工具，搭建达人评分系统与邮件、信息抓取、Onboarding 自动化流程</div><div class="pj">AI 自动化工作流</div></div>
+          <div class="hl2"><div class="v">1,106<small>份</small></div><div class="l">招募申请样本复盘，支持渠道质量、地区结构与转化趋势判断</div><div class="pj">数据研究与决策支持</div></div>
+          <div class="hl2"><div class="v">1,500<small>+</small></div><div class="l">日均触达 Creator，持续追踪自然流曝光与短视频表现</div><div class="pj">爆款内容与自然流增长</div></div>
+        </div>
+      </div>
+
+      <div class="hl-group">
+        <div class="hl-gh"><span class="co">Wahool</span><span class="ro">品牌客户经理</span><span class="yr">2023.10 – 2025.04</span></div>
+        <div class="hl-row">
+          <div class="hl2"><div class="v">15<small>+</small></div><div class="l">服务跨境品牌，助力进入北美市场</div><div class="pj">TikTok 直播出海运营</div></div>
+          <div class="hl2"><div class="v">85<small>%+</small></div><div class="l">客户续约率</div><div class="pj">数据驱动直播运营</div></div>
+          <div class="hl2"><div class="v">千<small>人级</small></div><div class="l">跨境主播 / 达人资源库（分级评估）</div><div class="pj">品牌 × 达人联营</div></div>
+        </div>
+      </div>
+
+      <div class="hl-group">
+        <div class="hl-gh"><span class="co">个人自媒体</span><span class="ro">社交媒体创作者</span><span class="yr">2022 – 至今</span></div>
+        <div class="hl-row">
+          <div class="hl2"><div class="v">10<small>万+</small></div><div class="l">主流社媒累计粉丝（个人独立）</div><div class="pj">小红书 / 抖音 / TikTok / IG</div></div>
+          <div class="hl2"><div class="v">476<small>%</small></div><div class="l">账号 90 天增长率</div><div class="pj">数据驱动内容策略</div></div>
+          <div class="hl2"><div class="v">5<small>M+</small></div><div class="l">单帖最高浏览（小红书）</div><div class="pj">爆款内容创作</div></div>
+        </div>
+      </div>
+
+      <div class="hl-group">
+        <div class="hl-gh"><span class="co">爱德曼国际公关</span><span class="ro">企业传播 & 金融公关实习生</span><span class="yr">2022.11 – 2023.05</span></div>
+        <div class="hl-row two">
+          <div class="hl2"><div class="v">中英<small>双语</small></div><div class="l">金融新闻与电商市场亮点研究推介</div><div class="pj">企业 / 金融方传播</div></div>
+          <div class="hl2"><div class="v">12<small>项</small></div><div class="l">核心营销指标的定期分析与优化</div><div class="pj">客户报告与效果衡量</div></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="overlay" id="overlay" onclick="closeReport()"></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-bar">
+    <span class="mtag" id="modalTag">完整报告</span>
+    <button class="modal-close" onclick="closeReport()" aria-label="关闭">×</button>
+  </div>
+  <div class="modal-scroll">
+    <p class="doc-disclaimer">本文为脱敏后的工作报告节选，仅用于求职作品集呈现。已隐去敏感金额与内部代号；具体金额以范围或定性描述呈现，竞品名称以「竞品 A / B」代称，人名已隐去。曝光量、合格率、样本量等能力相关数据为真实记录。</p>
+    <div class="report" id="reportBody"></div>
+  </div>
+</div>
+
+<!-- ===== REPORT CONTENT (hidden data) ===== -->
+<div id="reports" style="display:none">
+
+  <template id="tpl-r1">
+<h2>Solvely 开学季整合营销 · 学生 Creator 内容运营复盘</h2>
+<section><h3>项目概览</h3><p>本次「开学季整合营销」覆盖 <strong>2025.11.05–2025.12.15</strong>，由 KOL 与学生 Creator 双线协同完成。我负责其中的学生 Creator 线，包括招募跟进、新人引导、日常内容管理与复盘文档整理。</p><p>当时 Campaign 采用「付费投流 + 自然曝光」双轮驱动：投流用于验证与放大优质素材，自然曝光用于观察内容生命力。后续团队逐步转向更偏纯自然曝光的打法，但本轮 Campaign 的投流配合也验证了素材放大与自然流撬动的价值。</p></section>
+<section><h3>核心成果</h3><p>团队在本周期内达成营销内容<strong>总曝光 68M</strong>，目标完成度 <strong>164%</strong>；整体 CPM 环比下降 <strong>21.1%</strong>，自然曝光爆款率提升至 <strong>1.88%</strong>。</p><table><tr><th>维度</th><th>结果</th><th>说明</th></tr><tr><td>活动规模</td><td><strong>68M</strong> 总曝光</td><td>团队 / 活动协作成果</td></tr><tr><td>目标完成</td><td><strong>164%</strong></td><td>超过原定曝光目标</td></tr><tr><td>成本效率</td><td><strong>CPM 环比下降 21.1%</strong></td><td>投流与素材筛选共同影响</td></tr><tr><td>自然爆款</td><td><strong>1.88%</strong></td><td>较上一阶段有明显提升</td></tr></table><blockquote>爆款定义：单条内容达到 100K+ Impression；数据口径为 2025.11.05–2025.12.15。</blockquote></section>
+<section><h3>复盘框架</h3><p>这份复盘不是简单罗列结果，而是把 Campaign 拆成几个可追踪问题：哪些内容值得放大、哪些 Creator 更稳定、哪些环节会影响产出质量，以及付费曝光与自然曝光之间是否存在互相带动。</p><ul><li><strong>内容表现</strong>：对不同内容类型的曝光、互动与后续自然流变化做横向对比。</li><li><strong>人员运营</strong>：观察新加入 Creator 的适应速度、内容执行稳定性与沟通成本。</li><li><strong>投流反馈</strong>：用投流数据辅助判断素材潜力，而不是只看单条视频的初始表现。</li><li><strong>后续迁移</strong>：把本轮验证有效的观察维度保留下来，用于之后更偏自然曝光的 Campaign。</li></ul></section>
+<section><h3>经验整理</h3><p>当 Creator 规模扩大后，单纯按人头管理效率很低，更有效的方式是按内容能力、执行稳定性与沟通反馈做分层管理。</p><ul><li>把 Creator 的内容类型、执行节奏和反馈质量纳入同一张观察表，减少“凭感觉判断”。</li><li>对新人保留更密集的指导和反馈，对稳定 Creator 给予更明确的目标与复盘反馈。</li><li>对长期不匹配项目目标的账号，建立温和但清晰的调整机制，避免资源持续消耗。</li></ul></section>
+<section><h3>策略迭代方向</h3><p>复盘重点从“这轮曝光够不够大”进一步延伸到“曝光之后发生了什么”：哪些视频带来了后续转化信号，哪些素材只是短期放量，哪些内容可以在不依赖投流的情况下继续滚动。</p><ul><li>后续 Campaign 更重视自然流曝光的稳定性，把短视频的开头信息密度、节奏和完播表现放进复盘维度。</li><li>对短而容易跑出爆款的视频做了方向调整，保留更强的学生场景和产品关联，减少只追求泛流量的内容。</li><li>投流数据不再只看成本和播放量，也会反向验证素材是否值得进入下一轮自然曝光测试。</li></ul></section>
+  </template>
+
+  <template id="tpl-r2">
+<h2>学生 Creator 招募渠道分析报告</h2>
+<section><h3>分析背景</h3><p>这份报告围绕学生 Creator 招募数据展开，样本覆盖 <strong>1,106 份</strong>申请。报告目标不是展示某个“万能渠道”，而是把团队在规模扩张后遇到的质量波动、地区匹配与渠道效率问题拆清楚。</p></section>
+<section><h3>分析思路</h3><p>我把招募数据拆成四层：来源渠道、候选人质量、地区匹配、时间趋势。每一层都尽量回答一个运营问题，而不是只做数据罗列。</p><table><tr><th>分析层</th><th>看的问题</th><th>输出价值</th></tr><tr><td>渠道来源</td><td>不同来源带来的候选人质量是否稳定</td><td>判断投入优先级</td></tr><tr><td>候选人质量</td><td>通过率、重拍率、内容基础是否匹配</td><td>优化筛选标准</td></tr><tr><td>地区结构</td><td>目标地区与非目标地区比例如何变化</td><td>减少无效处理量</td></tr><tr><td>时间趋势</td><td>规模扩大后质量是否被稀释</td><td>建立月度预警</td></tr></table></section>
+<section><h3>关键发现</h3><ul><li>规模增长会带来质量稀释，不能只看申请总量，也要看有效候选人的占比变化。</li><li>不同渠道的“量”和“质”并不一致，有的渠道适合扩大触达，有的更适合补充特定类型候选人。</li><li>推荐来源需要更清晰的质量反馈，否则容易出现推荐数量上升、筛选效率下降的情况。</li><li>地区前置筛选与表单字段优化，能显著减少后续人工审核成本。</li></ul></section>
+<section><h3>复盘产出</h3><p>报告最后沉淀为一套更适合运营团队使用的招募看板口径：每月追踪渠道质量、目标地区占比、候选人通过情况与异常波动。这样团队可以在渠道变差时更早发现问题，而不是等到人力已经消耗完才复盘。</p><blockquote>具体渠道明细、推荐人榜单和内部阈值已做省略处理，仅保留可公开呈现的分析口径。</blockquote></section>
+  </template>
+
+  <template id="tpl-r3">
+<h2>竞品对标与招募策略分析</h2>
+<section><h3>报告概览</h3><p>这份研究围绕三家 StudyTok 头部品牌展开，覆盖 <strong>697 个 TikTok 学生 Creator 账号</strong>与 <strong>14,914 条视频</strong>样本。目标是把“竞品看起来很强”拆解成更可判断的问题：账号是否仍活跃、内容是否真人创作、爆款来自头部个体还是大规模铺量、哪些信号对招募有参考价值。</p></section>
+<section><h3>对标框架</h3><table><tr><th>维度</th><th>观察问题</th><th>用于判断</th></tr><tr><td>账号结构</td><td>真人号、品牌号、停更号比例</td><td>判断竞品增长质量</td></tr><tr><td>活跃状态</td><td>近期是否仍持续发布</td><td>识别真实可参考对象</td></tr><tr><td>内容表现</td><td>中位播放、最高播放、爆款分布</td><td>区分稳定产出与偶发爆款</td></tr><tr><td>创作者画像</td><td>内容类型、表达风格、学生场景匹配度</td><td>支持后续招募方向</td></tr></table></section>
+<section><h3>主要发现</h3><ul><li>竞品之间的“人数规模”不能直接等同于真实威胁，账号活跃度与真人创作比例更能说明问题。</li><li>部分竞品呈现出明显的铺量痕迹，但长期活跃和持续产出的 Creator 占比有限。</li><li>优质样本集中在少数高表现账号上，说明招募策略不能只追求数量，也要重视腰部以上 Creator 的稳定补充。</li><li>爆款内容并非完全随机，视频长度、开头信息密度、学生痛点场景和发布节奏都可以被归纳成分析维度。</li></ul></section>
+<section><h3>可视化输出</h3><p>报告中保留了多张对比表与分层图，用于向团队解释“哪里值得学、哪里不值得追、哪些对象适合作为参考样本”。这里出于脱敏与方法保护，只保留分析维度，不呈现完整名单、具体筛选公式和优先级清单。</p><blockquote>公开内容先被整理成样本库，再转化为可比较的指标；最终产出不是复制竞品动作，而是帮助团队判断哪些信号值得持续观察。</blockquote></section>
+  </template>
+
+  <template id="tpl-r4">
+<h2>Creator 运营中的 AI 与自动化实践</h2>
+<section><h3>背景</h3><p>学生 Creator 招募和运营里有大量重复动作：看候选人视频、整理账号信息、批量触达、跟进回复、更新状态。围绕这些节点，我参与梳理过多条自动化需求，包括视频初筛辅助、账号抓取与 EDM 自动触达、邮件知识库回复、候选人状态流转和入职提醒。</p></section>
+<section><h3>实践方向</h3><table><tr><th>场景</th><th>AI / 自动化用法</th><th>变化</th></tr><tr><td>候选人初筛</td><td>多模态 AI 读取 Demo 视频，输出结构化观察与异常提示</td><td>审核从逐条完整浏览，转向优先查看摘要和边界案例</td></tr><tr><td>账号抓取 + EDM</td><td>相似账号抓取、去重入库、首封触达和 UTM 回流追踪</td><td>候选账号池持续补充，减少手动找人和复制表格</td></tr><tr><td>邮件系统</td><td>历史邮件分桶、知识库检索、草稿生成和低置信度转人工</td><td>重复咨询由系统先处理，敏感或不确定问题保留人工接管</td></tr><tr><td>Recruiting 流程</td><td>候选人状态流转、Offer / Onboarding 邮件、材料提醒与异常告警</td><td>人工从记流程变成处理判断和例外情况</td></tr></table></section>
+<section><h3>AI 初筛的校准思路</h3><p>评分辅助上线后，我参与整理过 <strong>720 条</strong>清洗样本，对比 AI 输出与人工终判之间的差异。结果显示，AI 更适合承担“先读一遍、先归类、先提示异常”的工作，再把需要经验判断的部分交还给运营。</p><p>这个思路后来也迁移到邮件和招募流程里：高重复、低风险的问题让系统先生成草稿或自动流转；涉及合约、结算、谈判、内容适配等高判断场景，则保留人工接管。最终减少的是大量重复查看、复制、催促和状态维护的时间，而不是把运营判断完全交给模型。</p></section>
+<section><h3>工具选择</h3><p>不同任务会配不同工具：Cursor 更适合在已有代码或脚本里快速改逻辑、调自动化原型；Codex 适合拆解较长的本地文档、改页面和批量检查文本；Claude 更适合长文档梳理、结构化表达和复杂口径改写。遇到爬取、RAG、邮件自动化或表格处理问题时，也会在 GitHub 上找可参考的开源工具和实现方式，再判断哪些能迁移到现有流程。</p><ul><li>先把运营动作拆成输入、判断、输出和异常路径，再决定适合用脚本、LLM、RAG 还是人工审核。</li><li>对 AI 输出保留样本校准和人工抽查，避免把“看起来自动化”误当成“可以直接放手”。</li><li>自动化优先处理高频、重复、低风险环节，把人的时间留给谈判、判断和策略调整。</li></ul></section>
+  </template>
+
+</div>
+
+<script>
+  // tab switch
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById(t.dataset.p).classList.add('active');
+    });
+  });
+  // accordion (avoid toggling when clicking the read button area handled separately)
+  function toggleWork(el){ el.parentElement.classList.toggle('open'); }
+  // modal
+  const overlay=document.getElementById('overlay'), modal=document.getElementById('modal');
+  const tags={r1:'运营复盘 · 完整报告',r2:'数据分析 · 完整报告',r3:'竞品研究 · 完整报告',r4:'AI 工作流 · 完整文档'};
+  function openReport(id){
+    event.stopPropagation();
+    const tpl=document.getElementById('tpl-'+id);
+    document.getElementById('reportBody').innerHTML=tpl.innerHTML;
+    document.getElementById('modalTag').textContent=tags[id]||'完整报告';
+    document.querySelector('.modal-scroll').scrollTop=0;
+    overlay.classList.add('show'); modal.classList.add('show'); document.body.classList.add('locked');
+  }
+  function closeReport(){
+    overlay.classList.remove('show'); modal.classList.remove('show'); document.body.classList.remove('locked');
+  }
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeReport(); });
+</script>
+</body>
+</html>
